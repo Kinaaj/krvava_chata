@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krvavá Chata 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- ZÁKLADNÍ NASTAVENÍ BAREV A TYPOGRAFIE --- */
+        :root {
+            --bg-color: #0a0a0a;
+            /* Ještě tmavší, téměř černá */
+            --text-color: #e0e0e0;
+            /* Světlý text */
+            /* NOVÁ FIALOVÁ - jasnější, magická "BotC" fialová */
+            --accent-color: #9b59b6;
+            /* Barva záře (poloprůhledná fialová) */
+            --accent-glow: rgba(155, 89, 182, 0.6);
+            --card-bg: #161616;
+            /* Tmavší pozadí karet */
+            --font-heading: 'New Rocker', system-ui;
+            --font-body: 'Roboto', sans-serif;
+            --red-color: #c50000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.3;
+            padding-bottom: 50px;
+            background-image: radial-gradient(circle at top center, #2c0c38 0%, #0a0a0a 60%);
+            /* Jemný fialový nádech nahoře */
+        }
+
+        /* --- HLAVIČKA --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            /* Odstraněno ostré ohraničení, necháme působit gradient pozadí */
+        }
+
+        /* --- ÚPRAVA HLAVIČKY S LOGEM --- */
+        .header-container {
+            display: flex;
+            align-items: center;
+            /* Zarovná logo a text na střed vertikálně */
+            justify-content: center;
+            /* Zarovná vše na střed stránky */
+            gap: 20px;
+            /* Mezera mezi logem a nadpisem */
+            max-width: 900px;
+            margin: 0 auto;
+            /* Vycentrování celého bloku */
+        }
+
+        .header-logo {
+            width: 150px;
+            /* Velikost loga - uprav dle potřeby */
+            height: auto;
+            /* Přidáme logu fialovou záři, aby ladilo k textu */
+            /* filter: drop-shadow(0 0 10px var(--accent-glow)); */
+            /* transition: transform 0.3s; */
+        }
+
+        .header-text {
+            text-align: left;
+            /* Text zarovnáme doleva k logu */
+        }
+
+        /* Mobilní zobrazení: Když je displej malý, dáme logo nad text */
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                /* Pod sebe */
+                gap: 10px;
+            }
+
+            .header-text {
+                text-align: center;
+                /* Na mobilu text na střed */
+            }
+
+            .header-logo {
+                width: 80px;
+                /* Na mobilu trochu menší logo */
+            }
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            /* Text necháme světlý pro čitelnost */
+            color: #fff;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            -webkit-text-stroke: 4px #000;
+            /* Tloušťka a barva obrysu */
+            paint-order: stroke fill;
+            /* Zajistí, že obrys nepřekryje bílý vnitřek */
+            /* MAGICKÁ FIALOVÁ ZÁŘE (několik vrstev stínů) */
+            /* text-shadow: */
+            /* 0 0 5px #fff, */
+            /* Bílá hrana */
+            /* 0 0 15px var(--accent-color), */
+            /* Střední fialová záře */
+            /* 0 0 30px var(--accent-glow), */
+            /* Velká rozostřená záře */
+            /* 2px 2px 2px #000; */
+            /* Černý stín pro definici */
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            /* Podnadpis může být fialový, je tlustší */
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* --- NAVIGACE (ROZCESTNÍK) --- */
+        nav {
+            display: grid;
+            /* MOBIL: 2 sloupce vedle sebe (bude to 4 řádky po 2 tlačítkách) */
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 20px 10px 40px 10px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* TABLET A POČÍTAČ: 4 sloupce (budou to 2 řádky po 4 tlačítkách) */
+        @media (min-width: 700px) {
+            nav {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Pokud bys chtěl na velkém monitoru vše v jedné řadě, odkomentuj toto: */
+        /*
+        @media (min-width: 1100px) {
+            nav {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+        */
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background-color: rgba(40, 40, 40, 0.8);
+            padding: 12px 5px;
+            /* Menší boční padding, aby se text vešel */
+            border-radius: 4px;
+            border: 1px solid #333;
+            border-bottom: 3px solid var(--accent-color);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+
+            /* Zarovnání obsahu tlačítka na střed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            width: 100%;
+            /* Roztáhnout na celou šířku buňky mřížky */
+            height: 100%;
+            /* Stejná výška pro všechna tlačítka */
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
+            border-bottom: 3px solid transparent;
+        }
+
+        /* --- HLAVNÍ OBSAH --- */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 35px;
+            border-radius: 12px;
+            /* Fialová čára vlevo a jemná vnitřní záře boxu */
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(155, 89, 182, 0.1);
+            scroll-margin-top: 20px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            /* OPRAVA ČITELNOSTI: Text světlý, ne fialový */
+            color: #ffffff;
+            /* Fialové podtržení, které září */
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            /* Fialová záře okolo světlého textu */
+            /* text-shadow: 0 0 10px var(--accent-glow), 2px 2px 2px #000; */
+            /* box-shadow: 0 5px 10px -5px var(--accent-glow); */
+            /* Stín pod čarou */
+        }
+
+        h3 {
+            color: #fff;
+            margin-top: 45px;
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            /* Fialový vertikální proužek u H3 */
+            /* border-left: 4px solid var(--accent-color); */
+            padding-left: 15px;
+            /* background: linear-gradient(to right, rgba(155, 89, 182, 0.1), transparent); */
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 10px;
+            margin-bottom: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Stylování odrážek seznamu na fialovo */
+        ul li::marker {
+            color: var(--accent-color);
+            font-size: 1.2em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* --- SPECIFICKÉ PRVKY --- */
+        .highlight {
+            color: var(--red-color);
+            font-weight: bold;
+            /* text-shadow: 0 0 8px var(--accent-glow); */
+        }
+
+        /* Obyčejné odkazy v textu */
+        main a:not(.map-link) {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        main a:not(.map-link):hover {
+            text-shadow: 0 0 10px var(--accent-glow);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+
+        .map-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white !important;
+            /* Vynucení bílé */
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            /* Kulatější tlačítko */
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-top: 15px;
+            transition: all 0.3s;
+            border: none;
+            /* Silná záře tlačítka */
+            /* box-shadow: 0 0 20px var(--accent-glow); */
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .map-link:hover {
+            background-color: #af6ec9;
+            /* Světlejší při najetí */
+            box-shadow: 0 0 30px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .placeholder-img {
+            width: 100%;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-family: var(--font-heading);
+            border-radius: 8px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border: 2px dashed var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow) inset;
+            object-fit: cover;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-glow);
+            border-radius: 10px;
+        }
+
+        /* --- PATIČKA --- */
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 60px;
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            color: var(--accent-color);
+        }
+
+        /* --- GALERIE PRO DVA OBRÁZKY --- */
+        .gallery-container {
+            display: flex;
+            gap: 20px;
+            /* Mezera mezi rámečky */
+            justify-content: center;
+        }
+
+        /* Uvnitř galerie přepíšeme šířku rámečků, aby byly poloviční */
+        .gallery-container .placeholder-img {
+            flex: 1;
+            /* Roztáhnou se rovnoměrně */
+            margin-bottom: 0;
+            /* Uvnitř galerie nepotřebujeme spodní odsazení */
+            width: auto;
+            /* Resetujeme pevnou šířku */
+        }
+
+        /* MOBIL: Změna na sloupec (pod sebe) */
+        @media (max-width: 700px) {
+            .gallery-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <img src="botc_head.webp" alt="BotC Logo" class="header-logo">
+
+            <div class="header-text">
+                <h1>Krvavá Chata 2026</h1>
+                <div class="subtitle">Blood on the Clocktower</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#info">Základní Info</a>
+        <a href="#chata">O Chatě</a>
+        <a href="#program">Program</a>
+        <a href="#jidlo">Jídlo a Pití</a>
+        <a href="#s-sebou">Co s sebou</a>
+        <a href="#platba">Platba</a>
+        <a href="#vylety">Výlety</a>
+        <a href="#blood">O Hře</a>
+    </nav>
+
+    <main>
+        <section id="info">
+            <h2>Základní Info</h2>
+            <p><strong>Kdy:</strong> Příjezd čtvrtek 19. 2. 2026 – Odjezd neděle 22. 2. 2026 (dopoledne)</p>
+            <p><strong>Kde:</strong> Chalupa Netopýr, Černá Voda 103, 71954</p>
+            <p><small>GPS: 50.2972583N, 17.1314522E</small></p>
+            <a href="https://maps.app.goo.gl/ExrnGpuLoykU1uMTA" target="_blank" class="map-link"
+                style="margin-right: 10px">Otevřít na Google
+                Maps</a>
+            <a href="https://mapy.cz/s/juhotezone" target="_blank" class="map-link" style>Otevřít na Mapy.cz</a>
+
+
+        </section>
+
+        <section id="chata">
+            <h2>O Chatě</h2>
+            <p>Bude to spíše chalupa, než chata.. Avšak s příhodným jménem Netopýr! S epickou společenskou místností, ve
+                které
+                bude
+                epická společnost a
+                Víťa. Důležité info od majitele:</p>
+            <ul>
+                <li>Kávovar na chatě je.</li>
+                <li>Majitelé prosí o šetření s vodou.</li>
+                <li>Nádobí je dostatek.</li>
+                <li>V kuchyňské lince je spousta doplňkových potravin - sůl, cukr, olej,
+                    nějaké koření.</li>
+                <li>Parkoviště pojme až 7 aut.</li>
+                <li><span class="highlight">NESTLAT POSTELE, KTERÉ BYLY POUŽITY.</span></li>
+
+            </ul>
+            <img class="placeholder-img" src="spolecenska_mistnost.jpg" style="width: 70%; margin: 0 auto"></div>
+            <a href="https://chalupa-netopyr.webnode.cz/" target="_blank" class="map-link"
+                style="display: block; width: fit-content; margin: 20px auto 0px auto;">
+                Odkaz na chalupu
+            </a>
+
+        </section>
+
+        <section id="program">
+            <h2>Program</h2>
+            <h3>Čtvrtek</h3>
+            <ul>
+                <li>Příjezd</li>
+                <li>Volná zábava & Zasvětění nováčků do pravidel Bloodu + krátká ukázka skriptů, které nás čekají</li>
+                <li><strong>Workshop:</strong> Jak se stát (dobrým) vypravěčem?</li>
+            </ul>
+
+            <h3>Pátek</h3>
+            <ul>
+                <li><strong>Dopoledne:</strong> Výšlap (spíše delší procházka, neboj se)</li>
+                <li><strong>Odpoledne/Večer:</strong> Blood on the Clocktower a cokoliv jiného</li>
+            </ul>
+
+            <h3>Sobota</h3>
+            <ul>
+                <li><strong>Dopoledne:</strong> Výšlap</li>
+                <li><strong>Odpoledne/Večer:</strong> Blood on the Clocktower a cokoliv jiného</li>
+            </ul>
+
+            <h3>Neděle</h3>
+            <ul>
+                <li>Snídaně</li>
+                <li>Odjezd <span class="highlight">(NESTLAT POSTELE, KTERÉ BYLY POUŽITY !)</span></li>
+            </ul>
+            <h2 style="margin-top: 40px">Pozor!</h2>
+            <p style="margin-left: 0px;"> Také se můžete těšit na vystoupení Slam poetry v podání
+                <strong>Celest!</strong> Se kterým
+                vyhrála druhé místo na slamu v Ostravě!
+            </p>
+            <p>A samozřejmostí budou hudební večerní vložky, kdy si všichni spolu zahrajeme a
+                zazpíváme. Tak si vemte jakékoliv hudební nástroje!
+            </p>
+        </section>
+
+        <section id="jidlo">
+            <h2>Jídlo a Pití</h2>
+            <p class="highlight" style="font-size: 1.2rem;">Voda je ze studny a majitel s majitelkou ji pijou, ale
+                doporučuje koupit a
+                pít balenou! Nemůžou zaručit kvalitu vody, nebo že někdo ze sousedů nemá trativod.</p>
+
+            <h3>Pití</h3>
+            <ul>
+                <li>Obyčejnou balenou vodu (perlivou i neperlivou) koupím + citron, či mátu do džbánu.
+                    <strong>(SPOLEČNÉ)</strong>
+                </li>
+                <li>Zbytek (džus, pivo, víno, colu...) si každý přiveze sám, podle jeho gusta. Vždy je vítáno, když
+                    myslíte i na ostatní a vezmete toho víc!</li>
+            </ul>
+
+            <h3>Jídlo</h3>
+            <ul>
+                <li><strong>Snídaně (SPOLEČNÉ):</strong> Koupím na první dva dny a na další dny se pojede nakoupit.
+                    Koupím základní věci: <em>pečivo, sýry, šunku, máslo, pomazánkové máslo, bílý jogurt, müsli, ovoce
+                        (banány,
+                        jablka),
+                        zeleninu (rajčata, okurky, papriku), čaj, mléko, (zrna kávy dokoupíme, pokud nebude).</em>
+                </li>
+                <li><strong>Obědy a Večeře (SPOLEČNÉ):</strong> Rozdělíme se do skupin a každá skupina si vezme jedno
+                    jídlo, tedy oběd nebo večeři. Plus jeden oběd dáme
+                    v nějakém podniku na konci výletu?</li>
+                <li><strong>Buchta:</strong> Když upečete nějakou buchtu, nebo budete chtít udělat nějakou věc pro
+                    všechny, je to jen a jen vítáno!</li>
+                <li><strong>Snacky:</strong> Jakékoliv svačiny, brambůrky atd. si každý přivezte sami. Opět platí
+                    pravidlo, že je vítáno, když myslíte i na ostatní.</li>
+            </ul>
+
+            <p>Položky označené "SPOLEČNÉ" budou zapsány do společných výdajů, které se poté rozpočítají rovnoměrně mezi
+                všechny, kteří budou součástí společných jídel.</p>
+
+            <p>Udělám anketu, kam se můžete každý přihlasit, který oběd/večeři a s kým si vezmete na starost, ať máme
+                vše pokryté.
+                Ingredience si nakoupíte sami a jen spočítejte, kolik to stálo a to přidáte ke
+                společným výdajům.
+            </p>
+
+            <p class="highlight">Pokud by si chtěl někdo vařit zvlášť nebo měl speciální požadavky na jídlo
+                (alergie, intolerance),
+                dejte to vědět dopředu, ideálně do skupinového chatu.</p>
+        </section>
+
+        <section id="s-sebou">
+            <h2>Co s sebou</h2>
+            <ul>
+                <li>Ručník</li>
+                <li>Přezůvky</li>
+                <li>Vražednou náladu</li>
+            </ul>
+        </section>
+
+        <section id="platba">
+            <h2>Platba</h2>
+            <p>Celková cena za ubytování je 18 100 Kč. Na jednoho tedy 1131,25 Kč (16 účastníků).</p>
+            <h3>Pokud jsi platil zálohu:</h3>
+            <div class="qr-placeholder">
+                <img src="qr_code_full.jpg" alt="QR kód" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <h3>Pokud jsi neplatil zálohu:</h3>
+            <div class="qr-placeholder">
+                <img src="qr_code_doplatek.jpg" alt="QR kód" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <p><small>Číslo účtu pro ruční platbu: 1799757059/3030</small></p>
+        </section>
+
+        <section id="vylety">
+            <h2>Možné Výlety</h2>
+            <p>Klidně navrhněte cokoliv jiného. Mně se nejvíc líbí ty první dva, i kvůli tomu, že nemusíme nikam ještě
+                jezdit autem.</p>
+
+            <h3>Boží hora:</h3>
+            <ul>
+                <li>Výšlap o délce cca 12,5 km.</li>
+            </ul>
+
+            <div class="placeholder-img" style="width: 70%; margin: 0 auto;">
+                <img src="kostel.jpg" alt="Boží hora" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <a href="https://mapy.cz/s/musonurono" target="_blank" class="map-link"
+                style="display: block; width: fit-content; margin: 20px auto 60px auto;">
+                Otevřít trasu na Mapy.cz
+            </a>
+
+
+            <h3>Zřícenina hradu Kaltenštejn:</h3>
+            <ul>
+                <li>Výšlap po vícero místech, nejen na zříceninu. Délka 10 km.</li>
+            </ul>
+
+            <div class="placeholder-img" style="width: 38%; margin: 0 auto;">
+                <img src="hrad-kaltenstejn-hradisko4.jpg" alt="Kaltenštejn"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <a href="https://mapy.cz/s/lecezobage" target="_blank" class="map-link"
+                style="display: block; width: fit-content; margin: 20px auto 60px auto;">
+                Otevřít trasu na Mapy.cz
+            </a>
+
+
+            <h3>Tančírna + Zřícenina hradu Rychleby</h3>
+            <ul>
+                <li>Muselo by se přejet autem cca 25 minut.</li>
+                <li>Ještě jsem se nedíval kde parkovat atd. Ani neplánoval trasu. Prý je tam i dobrá kavárna.</li>
+            </ul>
+
+            <div class="gallery-container">
+
+                <div class="placeholder-img">
+                    <img src="tancirna.jpg" alt="Tančírna" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <div class="placeholder-img">
+                    <img src="zricenina-hradu-rychleby.jpg" alt="Rychleby"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+            </div>
+
+            <a href="https://mapy.cz/s/fuforarovo" target="_blank" class="map-link"
+                style="display: block; width: fit-content; margin: 20px auto;">
+                Otevřít trasu na Mapy.cz
+            </a>
+
+        </section>
+
+        <section id="blood">
+            <h2>O Hře</h2>
+            <p>Veškeré Info o Bloodu.</p>
+            <p>Pokud si chceš nastudovat pravidla nebo role dopředu:</p>
+            <div style="display: flex; flex-direction: column; gap: 15px; align-items: flex-start;">
+
+
+
+                <a href="https://wiki.bloodontheclocktower.com/Main_Page" target="_blank" class="map-link"
+                    style="width: 100%; text-align: center;">
+                    Blood on the Clocktower Wiki
+                </a>
+
+
+                <a href="https://docs.google.com/document/d/1Dc8E48eWpqFEQxzPwTF6D3AbGFV2A8SfqLSHv6Ct9bc/edit?usp=sharing"
+                    target="_blank" class="map-link" style="width: 100%; text-align: center;">
+                    Pravidla v kompaktní formě
+                </a>
+                <a href="https://bloodontheclocktower.com/" target="_blank" class="map-link"
+                    style="width: 100%; text-align: center;">
+                    Oficiální web
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Vytvořeno pro Krvavou Chatu 2026</p>
+    </footer>
+
+</body>
+
+</html>
