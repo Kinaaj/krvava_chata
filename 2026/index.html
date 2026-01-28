@@ -15,15 +15,10 @@
         /* --- ZÁKLADNÍ NASTAVENÍ BAREV A TYPOGRAFIE --- */
         :root {
             --bg-color: #0a0a0a;
-            /* Ještě tmavší, téměř černá */
             --text-color: #e0e0e0;
-            /* Světlý text */
-            /* NOVÁ FIALOVÁ - jasnější, magická "BotC" fialová */
             --accent-color: #9b59b6;
-            /* Barva záře (poloprůhledná fialová) */
             --accent-glow: rgba(155, 89, 182, 0.6);
             --card-bg: #161616;
-            /* Tmavší pozadí karet */
             --font-heading: 'New Rocker', system-ui;
             --font-body: 'Roboto', sans-serif;
             --red-color: #c50000;
@@ -33,114 +28,109 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            /* Zamezí modrému probliknutí při kliknutí na mobilu (volitelné) */
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
+            /* Základní velikost písma pro PC */
+            font-size: 16px;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-body);
-            line-height: 1.3;
+            line-height: 1.4;
             padding-bottom: 50px;
             background-image: radial-gradient(circle at top center, #2c0c38 0%, #0a0a0a 60%);
-            /* Jemný fialový nádech nahoře */
+        }
+
+        /* --- MOBILNÍ ÚPRAVY PÍSMA --- */
+        @media (max-width: 700px) {
+            html {
+                /* Zmenšíme základní písmo na 14.5px (cca 90% původního). 
+                   Tím se zmenší poměrově VŠECHNO (p, h1, h2, tlačítka), protože používáme 'rem' */
+                font-size: 14.5px;
+            }
+
+            p {
+                line-height: 1.5;
+                /* Na mobilu je lepší trochu větší řádkování pro čitelnost */
+            }
         }
 
         /* --- HLAVIČKA --- */
         header {
             text-align: center;
             padding: 60px 20px 40px 20px;
-            /* Odstraněno ostré ohraničení, necháme působit gradient pozadí */
         }
 
-        /* --- ÚPRAVA HLAVIČKY S LOGEM --- */
         .header-container {
             display: flex;
             align-items: center;
-            /* Zarovná logo a text na střed vertikálně */
             justify-content: center;
-            /* Zarovná vše na střed stránky */
             gap: 20px;
-            /* Mezera mezi logem a nadpisem */
             max-width: 900px;
             margin: 0 auto;
-            /* Vycentrování celého bloku */
         }
 
         .header-logo {
             width: 150px;
-            /* Velikost loga - uprav dle potřeby */
             height: auto;
-            /* Přidáme logu fialovou záři, aby ladilo k textu */
-            /* filter: drop-shadow(0 0 10px var(--accent-glow)); */
-            /* transition: transform 0.3s; */
         }
 
         .header-text {
             text-align: left;
-            /* Text zarovnáme doleva k logu */
         }
 
-        /* Mobilní zobrazení: Když je displej malý, dáme logo nad text */
         @media (max-width: 600px) {
             .header-container {
                 flex-direction: column;
-                /* Pod sebe */
                 gap: 10px;
             }
 
             .header-text {
                 text-align: center;
-                /* Na mobilu text na střed */
             }
 
             .header-logo {
                 width: 80px;
-                /* Na mobilu trochu menší logo */
             }
         }
 
         h1 {
             font-family: var(--font-heading);
-            /* Text necháme světlý pro čitelnost */
             color: #fff;
             font-size: 3.5rem;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
             -webkit-text-stroke: 4px #000;
-            /* Tloušťka a barva obrysu */
             paint-order: stroke fill;
-            /* Zajistí, že obrys nepřekryje bílý vnitřek */
-            /* MAGICKÁ FIALOVÁ ZÁŘE (několik vrstev stínů) */
-            /* text-shadow: */
-            /* 0 0 5px #fff, */
-            /* Bílá hrana */
-            /* 0 0 15px var(--accent-color), */
-            /* Střední fialová záře */
-            /* 0 0 30px var(--accent-glow), */
-            /* Velká rozostřená záře */
-            /* 2px 2px 2px #000; */
-            /* Černý stín pro definici */
+        }
+
+        /* Na mobilu zmenšíme nadpis výrazněji, aby se vešel */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.8rem;
+                -webkit-text-stroke: 3px #000;
+            }
         }
 
         .subtitle {
             font-size: 1.2rem;
             color: var(--accent-color);
-            /* Podnadpis může být fialový, je tlustší */
             opacity: 0.9;
             margin-bottom: 30px;
             font-weight: 400;
             letter-spacing: 1px;
         }
 
-        /* --- NAVIGACE (ROZCESTNÍK) --- */
+        /* --- NAVIGACE --- */
         nav {
             display: grid;
-            /* MOBIL: 2 sloupce vedle sebe (bude to 4 řádky po 2 tlačítkách) */
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             padding: 20px 10px 40px 10px;
@@ -148,53 +138,65 @@
             margin: 0 auto;
         }
 
-        /* TABLET A POČÍTAČ: 4 sloupce (budou to 2 řádky po 4 tlačítkách) */
         @media (min-width: 700px) {
             nav {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Pokud bys chtěl na velkém monitoru vše v jedné řadě, odkomentuj toto: */
-        /*
-        @media (min-width: 1100px) {
-            nav {
-                grid-template-columns: repeat(8, 1fr);
-            }
-        }
-        */
-
         nav a {
             text-decoration: none;
             color: #fff;
             background-color: rgba(40, 40, 40, 0.8);
             padding: 12px 5px;
-            /* Menší boční padding, aby se text vešel */
             border-radius: 4px;
             border: 1px solid #333;
             border-bottom: 3px solid var(--accent-color);
             font-family: var(--font-heading);
             font-size: 1.3rem;
-            transition: all 0.3s ease;
-
-            /* Zarovnání obsahu tlačítka na střed */
+            transition: all 0.2s ease;
+            /* Zrychlená animace pro lepší odezvu */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-
             width: 100%;
-            /* Roztáhnout na celou šířku buňky mřížky */
             height: 100%;
-            /* Stejná výška pro všechna tlačítka */
             text-shadow: 1px 1px 2px #000;
+            /* Zamezíme výběru textu při klikání na mobilu */
+            user-select: none;
         }
 
-        nav a:hover {
+        /* --- OPRAVA TLAČÍTEK (HOVER vs ACTIVE) --- */
+
+        /* Styl při najetí myší (jen pro zařízení, co mají myš/kurzor) */
+        @media (hover: hover) {
+            nav a:hover {
+                background-color: var(--accent-color);
+                color: #fff;
+                box-shadow: 0 0 15px var(--accent-glow);
+                transform: translateY(-2px);
+                border-bottom: 3px solid transparent;
+            }
+
+            .map-link:hover {
+                background-color: #af6ec9;
+                box-shadow: 0 0 30px var(--accent-color);
+                transform: scale(1.05);
+            }
+
+            main a:not(.map-link):hover {
+                text-shadow: 0 0 10px var(--accent-glow);
+                border-bottom: 1px solid var(--accent-color);
+            }
+        }
+
+        /* Styl při kliknutí (aktivní stisk) - funguje skvěle na mobilu */
+        nav a:active {
             background-color: var(--accent-color);
-            color: #fff;
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-2px);
+            transform: scale(0.96);
+            /* Efekt stlačení */
+            box-shadow: 0 0 5px var(--accent-glow);
             border-bottom: 3px solid transparent;
         }
 
@@ -210,26 +212,26 @@
             padding: 30px;
             margin-bottom: 35px;
             border-radius: 12px;
-            /* Fialová čára vlevo a jemná vnitřní záře boxu */
             border-left: 4px solid var(--accent-color);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(155, 89, 182, 0.1);
             scroll-margin-top: 20px;
             border-top: 1px solid #2a2a2a;
         }
 
+        /* Na mobilu zmenšíme padding v kartách, ať je víc místa pro text */
+        @media (max-width: 600px) {
+            section {
+                padding: 20px 15px;
+            }
+        }
+
         h2 {
             font-family: var(--font-heading);
-            /* OPRAVA ČITELNOSTI: Text světlý, ne fialový */
             color: #ffffff;
-            /* Fialové podtržení, které září */
             padding-bottom: 5px;
             margin-bottom: 25px;
             font-size: 2.2rem;
             letter-spacing: 1px;
-            /* Fialová záře okolo světlého textu */
-            /* text-shadow: 0 0 10px var(--accent-glow), 2px 2px 2px #000; */
-            /* box-shadow: 0 5px 10px -5px var(--accent-glow); */
-            /* Stín pod čarou */
         }
 
         h3 {
@@ -238,10 +240,7 @@
             margin-bottom: 5px;
             font-size: 1.4rem;
             font-weight: bold;
-            /* Fialový vertikální proužek u H3 */
-            /* border-left: 4px solid var(--accent-color); */
             padding-left: 15px;
-            /* background: linear-gradient(to right, rgba(155, 89, 182, 0.1), transparent); */
             padding-top: 5px;
             padding-bottom: 5px;
         }
@@ -256,7 +255,6 @@
             margin-bottom: 10px;
         }
 
-        /* Stylování odrážek seznamu na fialovo */
         ul li::marker {
             color: var(--accent-color);
             font-size: 1.2em;
@@ -267,14 +265,11 @@
             font-size: 1.05rem;
         }
 
-        /* --- SPECIFICKÉ PRVKY --- */
         .highlight {
             color: var(--red-color);
             font-weight: bold;
-            /* text-shadow: 0 0 8px var(--accent-glow); */
         }
 
-        /* Obyčejné odkazy v textu */
         main a:not(.map-link) {
             color: var(--accent-color);
             text-decoration: none;
@@ -282,36 +277,31 @@
             transition: all 0.3s;
         }
 
-        main a:not(.map-link):hover {
-            text-shadow: 0 0 10px var(--accent-glow);
-            border-bottom: 1px solid var(--accent-color);
+        /* Aktivní stav pro odkazy v textu na mobilu */
+        main a:not(.map-link):active {
+            background-color: rgba(155, 89, 182, 0.2);
         }
-
 
         .map-link {
             display: inline-block;
             background-color: var(--accent-color);
             color: white !important;
-            /* Vynucení bílé */
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 30px;
-            /* Kulatější tlačítko */
             font-family: var(--font-heading);
             font-size: 1.3rem;
             margin-top: 15px;
-            transition: all 0.3s;
+            transition: all 0.2s;
             border: none;
-            /* Silná záře tlačítka */
-            /* box-shadow: 0 0 20px var(--accent-glow); */
             text-shadow: 1px 1px 2px #000;
+            user-select: none;
         }
 
-        .map-link:hover {
+        /* Aktivní stav pro mapová tlačítka na mobilu */
+        .map-link:active {
+            transform: scale(0.95);
             background-color: #af6ec9;
-            /* Světlejší při najetí */
-            box-shadow: 0 0 30px var(--accent-color);
-            transform: scale(1.05);
         }
 
         .placeholder-img {
@@ -330,6 +320,13 @@
             object-fit: cover;
         }
 
+        /* Zajištění správného zobrazení obrázků na mobilu (ignorování inline stylů) */
+        @media (max-width: 700px) {
+            .placeholder-img {
+                width: 100% !important;
+            }
+        }
+
         .qr-placeholder {
             width: 200px;
             height: 200px;
@@ -345,7 +342,6 @@
             border-radius: 10px;
         }
 
-        /* --- PATIČKA --- */
         footer {
             text-align: center;
             font-size: 1rem;
@@ -356,25 +352,18 @@
             color: var(--accent-color);
         }
 
-        /* --- GALERIE PRO DVA OBRÁZKY --- */
         .gallery-container {
             display: flex;
             gap: 20px;
-            /* Mezera mezi rámečky */
             justify-content: center;
         }
 
-        /* Uvnitř galerie přepíšeme šířku rámečků, aby byly poloviční */
         .gallery-container .placeholder-img {
             flex: 1;
-            /* Roztáhnou se rovnoměrně */
             margin-bottom: 0;
-            /* Uvnitř galerie nepotřebujeme spodní odsazení */
             width: auto;
-            /* Resetujeme pevnou šířku */
         }
 
-        /* MOBIL: Změna na sloupec (pod sebe) */
         @media (max-width: 700px) {
             .gallery-container {
                 flex-direction: column;
