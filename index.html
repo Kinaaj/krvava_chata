@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krvavá Chata 2026</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ZÁKLADNÍ NASTAVENÍ BAREV A TYPOGRAFIE --- */
+        :root {
+            --bg-color: #121212;       /* Tmavé pozadí */
+            --text-color: #e0e0e0;     /* Světlý text */
+            --accent-color: #8a0303;   /* Krvavě rudá */
+            --card-bg: #1e1e1e;        /* Pozadí karet/sekcí */
+            --font-heading: 'Cinzel', serif; /* Font nadpisů */
+            --font-body: 'Roboto', sans-serif; /* Font textu */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Plynulé scrollování po kliknutí na menu */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* --- HLAVIČKA --- */
+        header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            background: radial-gradient(circle, #2a0505 0%, #121212 100%);
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        /* --- NAVIGACE (ROZCESTNÍK) --- */
+        nav {
+            display: flex;
+            flex-wrap: wrap;       /* Zalamování na mobilu */
+            justify-content: center;
+            gap: 10px;
+            padding: 0 10px 30px 10px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            padding: 12px 15px;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            /* Nastavení pro mobilní dlaždice */
+            flex: 1 1 auto; 
+            text-align: center;
+            min-width: 120px; /* Aby tlačítka nebyla moc úzká */
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* --- HLAVNÍ OBSAH --- */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            /* Odsazení pro kotvy, aby menu nezakrylo nadpis (kdyby bylo fixní), 
+               zde spíše pro pořádek */
+            scroll-margin-top: 20px; 
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 5px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* --- SPECIFICKÉ PRVKY --- */
+        .highlight {
+            color: #ff5555;
+            font-weight: bold;
+        }
+
+        .map-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .map-link:hover {
+            background-color: #a80404;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 250px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px dashed #555;
+            object-fit: cover; /* Pokud použiješ <img> tag místo divu */
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* --- PATIČKA --- */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Krvavá Chata 2026</h1>
+        <div class="subtitle">Blood on the Clocktower Víkend</div>
+    </header>
+
+    <nav>
+        <a href="#info">Základní info</a>
+        <a href="#chata">O chatě</a>
+        <a href="#program">Program</a>
+        <a href="#jidlo">Jídlo a pití</a>
+        <a href="#s-sebou">Co s sebou</a>
+        <a href="#platba">Platba</a>
+        <a href="#vylety">Výlety</a>
+        <a href="#blood">Pravidla</a>
+    </nav>
+
+    <main>
+        <section id="info">
+            <h2>Základní info</h2>
+            <p><strong>Kdy:</strong> Příjezd čtvrtek 19. 2. 2026 – Odjezd neděle 22. 2. 2026 (dopoledne)</p>
+            <p><strong>Kde:</strong> Chalupa Netopýr, Černá Voda 103, 71954</p>
+            <p><small>GPS: 50.2972583N, 17.1314522E</small></p>
+            
+            <a href="https://mapy.cz/s/juhotezone" target="_blank" class="map-link">Otevřít na Mapy.cz</a>
+        </section>
+
+        <section id="chata">
+            <h2>O chatě</h2>
+            <div class="placeholder-img">FOTKA CHATY</div> 
+            <p>Tentokrát nás čeká chata Netopýr.</p>
+            <p><em>(Zde doplníš další info o ubytování...)</em></p>
+        </section>
+
+        <section id="program">
+            <h2>Program</h2>
+            <h3>Čtvrtek</h3>
+            <ul>
+                <li>Volná zábava & Zasvětění nováčků do pravidel Bloodu</li>
+                <li><strong>Workshop:</strong> Jak se stát (dobrým) vypravěčem?</li>
+            </ul>
+
+            <h3>Pátek</h3>
+            <ul>
+                <li><strong>Dopoledne:</strong> Výšlap (spíše delší procházka)</li>
+                <li><strong>Odpoledne/Večer:</strong> Blood on the Clocktower a cokoliv jiného</li>
+            </ul>
+
+            <h3>Sobota</h3>
+            <ul>
+                <li><strong>Dopoledne:</strong> Výšlap</li>
+                <li><strong>Odpoledne/Večer:</strong> Blood a cokoliv jiného</li>
+            </ul>
+
+            <h3>Neděle</h3>
+            <ul>
+                <li>Snídaně</li>
+                <li>Odjezd <span class="highlight">(! NESTLAT POSTELE, KTERÉ BYLY POUŽITY !)</span></li>
+            </ul>
+        </section>
+
+        <section id="jidlo">
+            <h2>Jídlo a pití</h2>
+            <p class="highlight">!! Voda je víceméně pitná, ale majitel doporučuje koupit a pít balenou !!</p>
+            
+            <h3>Pití</h3>
+            <ul>
+                <li>Obyčejnou vodu koupím (SPOLEČNÉ)</li>
+                <li>Cokoliv si chcete přivézt na pití navíc (džus, pivo, víno, colu) si každý zařizuje sám.</li>
+            </ul>
+
+            <h3>Jídlo</h3>
+            <ul>
+                <li><strong>Snídaně:</strong> SPOLEČNÉ, koupím...</li>
+                <li><strong>Obědy a Večeře:</strong> SPOLEČNÉ, rozdělíme se, kdo co bude vařit.</li>
+                <li><strong>Snacky:</strong> Jakékoliv svačiny, brambůrky atd. si každý přivezte sami.</li>
+            </ul>
+        </section>
+
+        <section id="s-sebou">
+            <h2>Co s sebou</h2>
+            <p><em>(Doplním později...)</em></p>
+            <ul>
+                <li>Přezůvky</li>
+                <li>Dobrou náladu</li>
+            </ul>
+        </section>
+
+        <section id="platba">
+            <h2>Platba</h2>
+            <p>Info o ceně a platbě bude doplněno.</p>
+            
+            <div class="qr-placeholder">
+                ZDE BUDE QR KÓD
+            </div>
+        </section>
+
+        <section id="vylety">
+            <h2>Možné plánované výlety</h2>
+            <p><em>(Doplním obrázky a info...)</em></p>
+            <div class="placeholder-img">FOTKA VÝLETU</div>
+        </section>
+
+        <section id="blood">
+            <h2>Veškeré info o Bloodu</h2>
+            <p>Pokud si chceš nastudovat pravidla nebo role dopředu:</p>
+            <a href="https://bloodontheclocktower.com/" target="_blank" class="map-link">Oficiální web & Pravidla</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Vytvořeno pro Krvavou Chatu 2026</p>
+    </footer>
+
+</body>
+</html>
