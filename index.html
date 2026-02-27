@@ -2,13 +2,102 @@
 <html lang="cs">
 
 <head>
+    <meta property="og:title" content="Krvavá Chata - Rozcestník" />
+    <meta property="og:description" content="Epické víkendy plné lží, intrik a Blood on the Clocktower." />
+    <meta property="og:image" content="https://kinaaj.github.io/krvava_chata/assets/img/botc_head.png" />
+    <meta property="og:url" content="https://kinaaj.github.io/krvava_chata/" />
+    <meta property="og:type" content="website" />
     <meta charset="UTF-8">
-    <title>Krvavá chata - Přesměrování</title>
-    <meta http-equiv="refresh" content="0; url=2026/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="assets/img/botc_head.png">
+    <link rel="icon" type="image/png" href="assets/img/botc_head.png">
+
+    <title>Krvavá Chata - Rozcestník</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <p>Probíhá přesměrování na aktuální ročník. Pokud se nic nestane, <a href="2026/zima/">klikněte zde</a>.</p>
+    <header>
+        <div class="header-container">
+            <img src="assets/img/botc_head.png" alt="BotC Logo" class="header-logo">
+
+            <div class="header-text">
+                <h1>Krvavá Chata</h1>
+                <div class="subtitle" style="margin-bottom: 0;">Blood on the Clocktower</div>
+            </div>
+        </div>
+    </header>
+
+    <main style="max-width: 1000px; padding: 0;">
+        <p class="intro-text">
+            Vítej na rozcestníku! Zde najdeš archivy proběhlých Krvavých Chat i informace k těm, které se teprve vynoří
+            z temnoty.
+        </p>
+
+        <div class="rocniky-container">
+
+            <div class="rocnik-card theme-purple">
+                <div>
+                    <div class="title-wrapper">
+                        <div class="rocnik-title">Zima 2026</div>
+                        <div class="stamp-completed little">Proběhlo
+                        </div>
+                    </div>
+
+                    <div class="rocnik-date">Únor 2026 | Chalupa Netopýr</div>
+                    <p class="rocnik-desc">První legendární ročník. Mráz, sníh, krásné počasí, slam-poetry, poznávací
+                        kvíz, kulinářské zážitky a hraní setlistu Nejistá smrt.
+                    </p>
+                </div>
+                <div class="card-buttons">
+                    <a href="2026/zima/" class="rocnik-btn">Informace</a>
+                    <a href="404.html" target="_blank" class="rocnik-btn">Fotky</a>
+                </div>
+            </div>
+
+            <div class="rocnik-card theme-red hidden">
+                <div>
+                    <div class="title-wrapper">
+                        <div class="rocnik-title">Léto 2026</div>
+                        <div class="stamp-new">Nové!</div>
+                    </div>
+
+                    <div class="rocnik-date">Termín ??? | Místo ???</div>
+                    <p class="rocnik-desc">Přípravy začaly! Teplo, oheň a další krev... Démon už si brousí drápy.</p>
+                </div>
+                <div class="card-buttons">
+                    <a href="2026/leto/" class="rocnik-btn">Informace</a>
+                    <a href="#" class="rocnik-btn hidden">Fotky</a>
+                </div>
+            </div>
+
+            <div class="rocnik-card disabled">
+                <div>
+                    <div class="title-wrapper">
+                        <div class="rocnik-title" style="color: #888;">???</div>
+                    </div>
+                    <div class="rocnik-date">Budoucnost</div>
+                    <p class="rocnik-desc">Démon spí, ale brzy se probudí. Další chata se zatím připravuje v temných
+                        kuloárech.</p>
+                </div>
+                <div class="card-buttons">
+                    <span class="rocnik-btn">Připravujeme</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Vytvořeno pro Krvavou Chatu</p>
+    </footer>
+
 </body>
 
 </html>

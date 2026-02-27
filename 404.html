@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="assets/img/botc_head.png">
+    <link rel="icon" type="image/png" href="assets/img/botc_head.png">
+
+    <title>404 - Stránka nenalezena | Krvavá Chata</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .error-page-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 150px);
+            /* Vycentrování na střed výšky */
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Zajištění, že hlavička uvnitř containeru je vycentrovaná */
+        .error-page-container header {
+            padding: 0;
+            /* Zrušíme padding z hlavního CSS */
+            margin-bottom: 30px;
+        }
+
+        /* Styl pro text pod hlavičkou */
+        .error-text {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: #ccc;
+        }
+
+        /* Úprava nadpisu pro mobil - aby se 404 vešlo */
+        @media (max-width: 600px) {
+            .error-page-container h1 {
+                font-size: 3rem;
+                /* Trochu menší než standardní h1 na mobilu */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="error-page-container">
+
+        <header>
+            <div class="header-container">
+                <img src="assets/img/botc_head.png" alt="BotC Logo" class="header-logo">
+                <div class="header-text">
+                    <h1>ERROR 404</h1>
+                </div>
+            </div>
+        </header>
+
+        <p class="error-text">Tato cesta do města nevede. Pravděpodobně jsi v lese špatně odbočil.</p>
+
+        <a href="./" class="map-link">Vrátit se na rozcestník</a>
+    </main>
+
+    <footer>
+        <p>Vytvořeno pro Krvavou Chatu</p>
+    </footer>
+
+</body>
+
+</html>
