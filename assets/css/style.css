@@ -204,7 +204,7 @@ nav a {
         filter: brightness(1.2);
     }
 
-    main a:not(.map-link):hover {
+    main a:not(.map-link):not(.rocnik-card):hover {
         text-shadow: 0 0 10px var(--accent-glow);
         border-bottom: 1px solid var(--accent-color);
     }
@@ -291,7 +291,7 @@ p {
     font-weight: bold;
 }
 
-main a:not(.map-link) {
+main a:not(.map-link):not(.rocnik-card) {
     color: var(--accent-color);
     text-decoration: none;
     border-bottom: 1px dotted var(--accent-color);
@@ -299,7 +299,7 @@ main a:not(.map-link) {
 }
 
 /* Aktivní stav pro odkazy v textu na mobilu */
-main a:not(.map-link):active {
+main a:not(.map-link):not(.rocnik-card):active {
     background-color: rgba(155, 89, 182, 0.2);
 }
 
@@ -518,7 +518,8 @@ footer {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 60px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -549,6 +550,11 @@ footer {
     justify-content: space-between;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     color: var(--text-color);
+    cursor: pointer;
+}
+
+.rocnik-card:hover {
+    transform: translateY(-5px);
 }
 
 /* Obal pro nadpis a razítko vedle sebe */
@@ -556,10 +562,32 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 15px;
     flex-wrap: wrap;
     /* Pro jistotu, kdyby to na malém mobilu bylo moc dlouhé */
+}
+
+/* Obal pro nadpis sekce (H2) a razítko vedle sebe */
+.title-wrapper2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 25px;
+    /* Přebírá spodní mezeru z původního h2 */
+    flex-wrap: wrap;
+    /* Pro jistotu, kdyby to na malém mobilu bylo moc dlouhé */
+}
+
+/* Úprava samotného H2 uvnitř wrapperu, aby se neduplikovaly mezery */
+.title-wrapper2 h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    line-height: 1;
+    /* Zajistí perfektní vertikální zarovnání s razítkem */
 }
 
 .rocnik-title {
@@ -614,7 +642,7 @@ footer {
 
 .rocnik-card.theme-green:hover {
     border-left-color: var(--theme-green-hover);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 162, 68, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 162, 68, 0.35);
 }
 
 .rocnik-card.theme-green .rocnik-date {
@@ -625,9 +653,10 @@ footer {
     background-color: var(--theme-green);
 }
 
-.rocnik-card.theme-green .rocnik-btn:hover {
+.rocnik-card.theme-green:hover .rocnik-btn {
     background-color: var(--theme-green-hover);
     box-shadow: 0 0 15px var(--theme-green-glow);
+    transform: scale(1.05);
 }
 
 /* --- TÉMA ČERVENÁ --- */
@@ -638,7 +667,7 @@ footer {
 
 .rocnik-card.theme-red:hover {
     border-left-color: var(--theme-red-hover);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(197, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(197, 0, 0, 0.35)
 }
 
 .rocnik-card.theme-red .rocnik-date {
@@ -649,9 +678,10 @@ footer {
     background-color: var(--theme-red);
 }
 
-.rocnik-card.theme-red .rocnik-btn:hover {
+.rocnik-card.theme-red:hover .rocnik-btn {
     background-color: var(--theme-red-hover);
     box-shadow: 0 0 15px var(--theme-red-glow);
+    transform: scale(1.05);
 }
 
 /* --- TÉMA FIALOVÁ --- */
@@ -662,7 +692,7 @@ footer {
 
 .rocnik-card.theme-purple:hover {
     border-left-color: var(--theme-purple-hover);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(155, 89, 182, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(139, 56, 172, 0.35);
 }
 
 .rocnik-card.theme-purple .rocnik-date {
@@ -673,9 +703,10 @@ footer {
     background-color: var(--theme-purple);
 }
 
-.rocnik-card.theme-purple .rocnik-btn:hover {
+.rocnik-card.theme-purple:hover .rocnik-btn {
     background-color: var(--theme-purple-hover);
     box-shadow: 0 0 15px var(--theme-purple-glow);
+    transform: scale(1.05);
 }
 
 /* --- Deaktivovaná karta "Připravujeme" --- */
@@ -719,7 +750,7 @@ footer {
     border: 2px solid #000;
     box-shadow: 2px 2px 0px #000;
     text-transform: uppercase;
-    margin-left: 10px;
+    margin-left: 0px;
     vertical-align: middle;
 }
 
@@ -790,4 +821,16 @@ footer {
         letter-spacing: 5px;
         padding: 20px 30px;
     }
+}
+
+/* --- MIKRO RAZÍTKO DO NAVIGACE --- */
+.stamp-new.micro {
+    font-size: 0.65rem;
+    padding: 1px 5px;
+    border: 1px solid #000;
+    box-shadow: 1px 1px 0px #000;
+    margin-left: 8px;
+    letter-spacing: 0;
+    transform: rotate(-8deg) translateY(-2px);
+    /* Mírné posunutí nahoru, aby lépe lícovalo s textem */
 }

@@ -34,20 +34,21 @@
         </div>
     </header>
 
+    <nav>
+        <a href="#aktualne" class="hidden">Aktuálně!</a>
+        <a href="#rocniky" class="hidden">Chaty</a>
+        <a href="#info">Info</a>
+        <a href="#galerie">Fotogalerie <span class="stamp-new micro">Nové!</span></a>
+    </nav>
+
     <main style="max-width: 1000px; padding: 0;">
-        <p class="intro-text">
-            Vítej na rozcestníku! Zde najdeš archivy proběhlých Krvavých Chat i informace k těm, které se teprve vynoří
-            z temnoty.
-        </p>
+        <div id="rocniky" class="rocniky-container">
 
-        <div class="rocniky-container">
-
-            <div class="rocnik-card theme-purple">
+            <a href="2026/zima/" class="rocnik-card theme-purple" style="text-decoration: none; color: inherit;">
                 <div>
                     <div class="title-wrapper">
                         <div class="rocnik-title">Zima 2026</div>
-                        <div class="stamp-completed little">Proběhlo
-                        </div>
+                        <div class="stamp-completed little">Proběhlo</div>
                     </div>
 
                     <div class="rocnik-date">Únor 2026 | Chalupa Netopýr</div>
@@ -56,12 +57,11 @@
                     </p>
                 </div>
                 <div class="card-buttons">
-                    <a href="2026/zima/" class="rocnik-btn">Informace</a>
-                    <a href="404.html" target="_blank" class="rocnik-btn">Fotky</a>
+                    <span class="rocnik-btn">Informace</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="rocnik-card theme-red hidden">
+            <a href="2026/leto/" class="rocnik-card theme-red" style="text-decoration: none; color: inherit;">
                 <div>
                     <div class="title-wrapper">
                         <div class="rocnik-title">Léto 2026</div>
@@ -72,10 +72,9 @@
                     <p class="rocnik-desc">Přípravy začaly! Teplo, oheň a další krev... Démon už si brousí drápy.</p>
                 </div>
                 <div class="card-buttons">
-                    <a href="2026/leto/" class="rocnik-btn">Informace</a>
-                    <a href="#" class="rocnik-btn hidden">Fotky</a>
+                    <span class="rocnik-btn">Informace</span>
                 </div>
-            </div>
+            </a>
 
             <div class="rocnik-card disabled">
                 <div>
@@ -83,15 +82,38 @@
                         <div class="rocnik-title" style="color: #888;">???</div>
                     </div>
                     <div class="rocnik-date">Budoucnost</div>
-                    <p class="rocnik-desc">Démon spí, ale brzy se probudí. Další chata se zatím připravuje v temných
-                        kuloárech.</p>
+                    <p class="rocnik-desc">Démon spí, ale brzy se probudí. Další chata se totiž možná zatím připravuje v
+                        temných kuloárech.</p>
                 </div>
                 <div class="card-buttons">
-                    <span class="rocnik-btn">Připravujeme</span>
+                    <span class="rocnik-btn">Připravujeme?</span>
                 </div>
             </div>
 
         </div>
+
+        <section id="info">
+            <h2>Vítejte</h2>
+            <p>
+                Vítej na rozcestníku! Zde najdeš informace o proběhlých Krvavých Chatách i informace k těm, které se
+                teprve vynoří z temnoty.
+            </p>
+        </section>
+
+        <section id="galerie">
+            <div class="title-wrapper2">
+                <h2>Tajná Fotogalerie Krvavé Chaty</h2>
+                <div class="stamp-new">Nové!</div>
+            </div>
+            <p style="margin-bottom: 25px;">Všechny fotky ze všech ročníků na jednom místě.<br>Přístup
+                mají pouze pozvaní hráči přes svůj Google účet. O přístup nám napiš.</p>
+
+            <a href="https://photos.google.com/share/AF1QipMpyVMcz8lO7LppHpVNfDsD89oVNcCuZcq-ufjmZ_wFcCCVQ8VXiyCbYrkTq3GFnQ?key=WXowTzVWOXVMd3BkU196OEpheV91eEZEdVRSVnVR&obfsgid=110059076597598745707"
+                target="_blank" class="map-link hidden">
+                Vstoupit do Fotogalerie
+            </a>
+        </section>
+
     </main>
 
     <footer>
